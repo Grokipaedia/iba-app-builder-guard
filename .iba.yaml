@@ -1,0 +1,54 @@
+# .iba.yaml - IBA App Builder Guard · Intent Certificate
+# Patent GB2603013.0 (Pending) · intentbound.com
+
+intent:
+  description: "Build a prototype todo app with local storage only. No auth. No database. No production deployment."
+
+scope:
+  - frontend
+  - component
+  - ui
+  - prototype
+  - local
+  - mock
+  - landing
+  - dashboard
+  - generate
+  - build
+  - create
+  - todo
+  - list
+
+denied:
+  - authentication
+  - auth system
+  - database
+  - postgresql
+  - mongodb
+  - stripe
+  - payment
+  - external_api
+  - user_data
+  - user tracking
+  - secrets
+  - credentials
+
+default_posture: DENY_ALL
+
+kill_threshold: "production_deploy | production-deployment | payment | authentication_system | user_data_collection"
+
+hollowing:
+  block_components:
+    - auth
+    - database
+    - payment_integration
+    - external_api_calls
+    - user_tracking
+
+temporal_scope:
+  hard_expiry: "2026-12-31"
+  session_max_hours: 4
+
+audit:
+  chain: witnessbound
+  log_every_component: true
